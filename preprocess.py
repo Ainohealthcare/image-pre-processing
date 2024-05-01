@@ -36,6 +36,7 @@ for filename in os.listdir(image_dir):
       print( f.width / f.height, f.height / f.width)
       f_resized = image_process(f)
       f_resized.save(os.path.join(output_dir, filename), 'JPEG')
+    
 
 # tests
 for filename in os.listdir(output_dir):
