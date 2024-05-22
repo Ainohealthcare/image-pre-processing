@@ -1,8 +1,8 @@
 import os
 from PIL import Image
 
-image_dir = os.path.join(os.getcwd(), 'images')
-output_dir = os.path.join(os.getcwd(), 'output')
+image_dir = os.path.join(os.getcwd(), 'output')
+output_dir = os.path.join(os.getcwd(), 'processed_output')
 
 OUT_SIZE = 512
 
@@ -31,12 +31,18 @@ if not os.path.exists(output_dir):
 
 # process image 
 for filename in os.listdir(image_dir):
-  with Image.open(os.path.join(image_dir, filename), 'r') as f:
-    if image_filter(f):
-      print( f.width / f.height, f.height / f.width)
-      f_resized = image_process(f)
-      f_resized.save(os.path.join(output_dir, filename), 'JPEG')
-    
+  file_path = os.path.join(image_dir, filename)
+  try:
+    with Image.open(file_path, 'r') as f:
+      if image_filter(f):
+        f_resized = image_process(f)
+        # Convert to RGB if not already in RGB
+        if f_resized.mode != 'RGB':
+          f_resized = f_resized.convert('RGB')
+        f_resized.save(os.path.join(output_dir, filename), 'JPEG')
+  except Exception as e:
+      print(f"Error processing {filename}: {e}")
+  
 
 # tests
 for filename in os.listdir(output_dir):

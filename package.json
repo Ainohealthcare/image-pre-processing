@@ -1,0 +1,17 @@
+{
+  "name": "supabase-image-load",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.42.7",
+    "png-to-jpeg": "^1.0.1",
+    "sharp": "^0.33.3"
+  }
+}
